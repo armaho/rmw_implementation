@@ -321,10 +321,19 @@ RMW_INTERFACE_FN(
   rmw_ret_t, RMW_RET_ERROR,
   3, ARG_TYPES(const rmw_publisher_t *, const void *, rmw_publisher_allocation_t *))
 
+RMW_INTERFACE_FN(rmw_publish_with_priority, rmw_ret_t, RMW_RET_ERROR, 4,
+                 ARG_TYPES(const rmw_publisher_t *, const void *, int64_t,
+                           rmw_publisher_allocation_t *))
+
 RMW_INTERFACE_FN(
   rmw_publish_loaned_message,
   rmw_ret_t, RMW_RET_ERROR,
   3, ARG_TYPES(const rmw_publisher_t *, void *, rmw_publisher_allocation_t *))
+
+RMW_INTERFACE_FN(rmw_publish_loaned_message_with_priority, rmw_ret_t,
+                 RMW_RET_ERROR, 4,
+                 ARG_TYPES(const rmw_publisher_t *, void *, int64_t,
+                           rmw_publisher_allocation_t *))
 
 RMW_INTERFACE_FN(
   rmw_publisher_count_matched_subscriptions,
@@ -834,7 +843,9 @@ void prefetch_symbols(void)
   GET_SYMBOL(rmw_borrow_loaned_message)
   GET_SYMBOL(rmw_return_loaned_message_from_publisher)
   GET_SYMBOL(rmw_publish)
+  GET_SYMBOL(rmw_publish_with_priority)
   GET_SYMBOL(rmw_publish_loaned_message)
+  GET_SYMBOL(rmw_publish_loaned_message_with_priority)
   GET_SYMBOL(rmw_publisher_count_matched_subscriptions)
   GET_SYMBOL(rmw_publisher_get_actual_qos)
   GET_SYMBOL(rmw_publisher_event_init)
@@ -956,7 +967,9 @@ unload_library()
   symbol_rmw_borrow_loaned_message = nullptr;
   symbol_rmw_return_loaned_message_from_publisher = nullptr;
   symbol_rmw_publish = nullptr;
+  symbol_rmw_publish_with_priority = nullptr;
   symbol_rmw_publish_loaned_message = nullptr;
+  symbol_rmw_publish_loaned_message_with_priority = nullptr;
   symbol_rmw_publisher_count_matched_subscriptions = nullptr;
   symbol_rmw_publisher_get_actual_qos = nullptr;
   symbol_rmw_publisher_event_init = nullptr;
